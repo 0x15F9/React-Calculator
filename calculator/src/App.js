@@ -10,13 +10,13 @@ class App extends Component {
   state = {
     displayValue : "0",
     buttons: [
-      7, 8, 9, '+',
-      4, 5, 6, '-',
-      1, 2 , 3, '*',
-      '.', '=', 0, '÷']
+      '7', '8', '9', '+',
+      '4', '5', '6', '-',
+      '1', '2' , '3', '*',
+      '.', '=', '0', '÷']
   }
 
-  onButtonClick = (val) => {
+  onButtonClicked = (val) => {
     this.setState(
       {
         ...this.state,
@@ -25,13 +25,33 @@ class App extends Component {
     )
   }
 
+  onDeleteButtonClicked = () => {
+    this.setState(
+      {
+        ...this.state,
+        displayValue: this.state.displayValue.substring( 0, this.state.displayValue.length-1 )
+      }
+    )
+  }
+
+  onResetButtonClicked = () => {
+    this.setState(
+      {
+        ...this.state,
+        displayValue: 0
+      }
+    )
+  }
+
   render() {
     return (
       <div className="App">
         <DisplayBar displayValue={ this.state.displayValue } />
+        <Button val='<-' click={ () => this.onDeleteButtonClicked() } />
+        <Button val='AC' click={ () => this.onResetButtonClicked() } />
         < br />
         { this.state.buttons.map( (val, index) => {
-          return <Button key={ val } val={ val } click={ () => this.onButtonClick(val) } />
+          return <Button key={ val } val={ val } click={ () => this.onButtonClicked(val) } />
         } ) }
       </div>
     );
