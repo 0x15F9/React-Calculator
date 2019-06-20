@@ -65,19 +65,92 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DisplayBar displayValue={ this.state.displayValue } />
-        <Button val='<-' click={ () => this.onSpecialButtonClicked('del') } />
-        <Button val='AC' click={ () => this.onSpecialButtonClicked('AC') } />
-        < br />
-        { this.state.numPad.map( (val, index) => {
-          return <Button key={ val } val={ val } click={ () => this.onNumpadButtonClicked(val) } />
-        } ) }
-        <br />
-        { this.state.operations.map( (val, index) => {
-          return <Button key={ val } val={ val } click={ () => this.onNumpadButtonClicked(val) } />
-        } ) }
-        <br />
-        <Button val='=' click={ () => this.onSpecialButtonClicked('=') } />
+
+        {/* TODO: Move to Component */}
+        <section class="hero is-primary">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Dumb Calculator
+              </h1>
+              <h2 class="subtitle">
+                by Isfaaq G.
+              </h2>
+            </div>
+          </div>
+        </section>
+        <br/>
+
+        <div className="columns">
+          <div className="column is-one-quarter"></div>
+
+          <div className="column is-one-half">
+            
+            <div className="columns">
+
+              <div className="column is-three-quarters">
+                  <DisplayBar displayValue={ this.state.displayValue } />
+              </div>
+
+              <div className="column is-one-eights">
+                <Button val='<-' click={ () => this.onSpecialButtonClicked('del') } css='is-danger' />
+              </div>
+              
+              <div className="column is-one-eights">
+                <Button val='AC' click={ () => this.onSpecialButtonClicked('AC') } css='is-danger' />
+              </div>
+              
+            </div>
+
+            
+            <div className="columns"> 
+              <div className="column is-three-quarters">
+                <div className="columns is-multiline">
+                  { this.state.numPad.map( (val, index) => {
+                  return (
+                    <div className="column is-one-third">
+                      <Button key={ val } val={ val } click={ () => this.onNumpadButtonClicked(val) } css='is-primary is-outlined'/>
+                    </div>
+                  )
+                  } ) }
+                </div>
+              </div>
+
+              <div className="column is-one-quarter">
+
+                <div className="columns is-multiline">
+                  { this.state.operations.map( (val, index) => {
+                    return (
+                      <div className="column is-full">
+                        <Button key={ val } val={ val } click={ () => this.onNumpadButtonClicked(val) } css='is-warning'/>
+                      </div>
+                    );
+                  } ) }
+                </div>
+                
+              </div>
+
+            </div>
+
+            <div className="column is-full">
+                <Button val='=' click={ () => this.onSpecialButtonClicked('=') } css='is-success'/>
+              </div>
+
+          </div>
+
+          <div className="column is-one-quarter"></div>
+        </div>
+
+        {/* TODO: Move to a Component */}
+        <footer className="footer">
+        <div className="content has-text-centered">
+          <p>
+            <strong>Dumb Calculator</strong> by <a href="https://github.com/0x15F9">Isfaaq G.</a>
+            <br/>
+            This Calculator is powered by <a href="https://reactjs.org/">ReactJS</a>, <a href="https://bulma.io/">Bulma</a> and some dumb Calculation Logic.
+          </p>
+        </div>
+      </footer>
       </div>
     );
   }
