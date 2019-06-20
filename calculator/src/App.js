@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   onNumpadButtonClicked = (val) => {
-    const newVal = this.state.displayValue ==='0' ? val : this.state.displayValue+val;
+    const newVal = ['0', 0, 'Infinity', Infinity, Error, 'ERROR'].indexOf(this.state.displayValue) !== -1 ? val : this.state.displayValue+val;
     this.setState(
       {
         ...this.state,
@@ -30,7 +30,7 @@ class App extends Component {
   onSpecialButtonClicked = (val) => {
     switch (val) {
       case 'del':
-        if (this.state.displayValue.length > 1) {
+        if (this.state.displayValue.length > 1 || ['Infinity', Infinity, Error, 'ERROR'].indexOf(this.state.displayValue) !== -1 ) {
           this.setState(
             {
               ...this.state,
