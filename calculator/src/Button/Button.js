@@ -2,7 +2,7 @@ import React from 'react';
 
 const Button = (props) => {
     return (
-        <div className={"button "+props.css} onClick={props.click} >
+        <div className={"button is-fullwidth "+props.css} onClick={props.click} >
             {props.val}
         </div>
     )

@@ -93,11 +93,11 @@ class App extends Component {
               </div>
 
               <div className="column is-one-eights">
-                <Button val='<-' click={ () => this.onSpecialButtonClicked('del') } css='is-danger' />
+                <Button val='<-' click={ () => this.onSpecialButtonClicked('del') } css='is-rounded is-danger' />
               </div>
               
               <div className="column is-one-eights">
-                <Button val='AC' click={ () => this.onSpecialButtonClicked('AC') } css='is-danger' />
+                <Button val='AC' click={ () => this.onSpecialButtonClicked('AC') } css='is-rounded is-danger' />
               </div>
               
             </div>
@@ -113,7 +113,13 @@ class App extends Component {
                     </div>
                   )
                   } ) }
+
+                  <div className="column is-two-thirds">
+                      <Button val='=' click={ () => this.onSpecialButtonClicked('=') } css='is-success'/>
+                  </div>
+
                 </div>
+
               </div>
 
               <div className="column is-one-quarter">
@@ -132,9 +138,6 @@ class App extends Component {
 
             </div>
 
-            <div className="column is-full">
-                <Button val='=' click={ () => this.onSpecialButtonClicked('=') } css='is-success'/>
-              </div>
 
           </div>
 
