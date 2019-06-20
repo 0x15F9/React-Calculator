@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   onNumpadButtonClicked = (val) => {
-    const newVal = this.state.displayValue=='0' ? val : this.state.displayValue+val;
+    const newVal = this.state.displayValue ==='0' ? val : this.state.displayValue+val;
     this.setState(
       {
         ...this.state,
@@ -50,10 +50,17 @@ class App extends Component {
           );
           break;
       case '=':
+        let result = 'ERROR';
+        try {
+          result = eval(this.state.displayValue);
+        } catch (error) {
+          console.log(error);
+        }
+
         this.setState(
           {
             ...this.state,
-            displayValue: eval(this.state.displayValue)
+            displayValue: result
           }
         );
         break;
@@ -67,13 +74,13 @@ class App extends Component {
       <div className="App">
 
         {/* TODO: Move to Component */}
-        <section class="hero is-primary">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
+        <section className="hero is-primary">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
                 Dumb Calculator
               </h1>
-              <h2 class="subtitle">
+              <h2 className="subtitle">
                 by Isfaaq G.
               </h2>
             </div>
@@ -108,7 +115,7 @@ class App extends Component {
                 <div className="columns is-multiline">
                   { this.state.numPad.map( (val, index) => {
                   return (
-                    <div className="column is-one-third">
+                    <div key={ val }  className="column is-one-third">
                       <Button key={ val } val={ val } click={ () => this.onNumpadButtonClicked(val) } css='is-primary is-outlined'/>
                     </div>
                   )
@@ -127,7 +134,7 @@ class App extends Component {
                 <div className="columns is-multiline">
                   { this.state.operations.map( (val, index) => {
                     return (
-                      <div className="column is-full">
+                      <div  key={ val } className="column is-full">
                         <Button key={ val } val={ val } click={ () => this.onNumpadButtonClicked(val) } css='is-warning'/>
                       </div>
                     );
